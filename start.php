@@ -23,46 +23,103 @@
         $html = <<< HTML
                         <head>
                             <style>
+                                @import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Poppins&display=swap');
                                 .col{
                                     display:flex;
                                     align-items:center;
                                 }
                                 .container-notificacao{
-                                    width:50%;
+                                    width:40%;
                                     background-color:#fff;
                                     box-shadow:0 0 1em black;
                                     bottom:10px;
                                     left:10px;
                                     position:fixed;
                                     padding:10px;
+                                    display:flex;
+                                    align-items:center;
+                                    border-radius:12px;
+                                }
+                                #img-product-not{
+                                    width:100%;
+                                }
+                                #title-product-not{
+                                    font-weight:800;
+                                    font-family:'Montserrat';
+                                    font-size:18px;
+                                }
+                                #text-sell-not{
+                                    font-family:'Poppins';
+                                    font-size:15px;
+                                }
+                                @keyframes fade {
+                                    0%{
+                                        opacity: 0;
+                                    }
+                                    5%{
+                                        opacity: 1;
+                                    }
+                                    100%{
+                                        opacity:1;
+                                    }
+                                }
+                                .teste{
+                                    opacity: 0;
+                                    animation: fade 3s linear;
                                 }
                             </style>
                         </head>
                         <body>
-                            <div class="container-notificacao col">
-                                <div>
+                            <div class="container-notificacao col" id="notification">
+                                <div style="width:15%">
                                     <img alt="Imagem do produto" id="img-product-not">
                                 </div>
-                                <div>
+                                <div style="width:60%;padding-left:10px;">
                                     <span id="title-product-not"></span>
                                     <p id="text-sell-not"></p>
                                 </div>
                             </div>
                             <script>
+                            
+                            document.getElementById("notification").style.display = "none";
 
                             $.ajax({
-                                    url: "wp-content/plugins/notificacao-vendas/functions.php",
+                                    url: "wp-content/plugins/plugin-notificacao-vendas/functions.php",
                                     type: "POST",
                                     data: {'start' : ""},
                                     dataType: 'json',
-                                    success: data => {
-
-                                        console.log(data);
-
+                                    success: data => {                
+                                        mostrar_notification(data);
                                     },error : function(XML, textStatus, errorThrown){
                                         console.log(XML, textStatus);
                                     }
                                 });
+
+                                function mostrar_notification(data){
+
+                                    var title = document.getElementById("title-product-not");
+                                    var text = document.getElementById("text-sell-not");
+                                    var imgProduct = document.getElementById("img-product-not");
+
+                                    setInterval(() => {
+
+                                        var index = Math.floor(Math.random() * data.length);
+                                        
+                                        title.innerHTML = data[index]['nome_product'];
+                                        text.innerHTML =  "Um novo produto foi vendido para outro usuário!";
+                                        imgProduct.src = data[index]['imagem_produto'];
+                                        document.getElementById("notification").classList.add("teste");
+                                        display_notification();                                        
+                                    }, 5000);
+
+                                }
+
+                                function display_notification(){
+                                    document.getElementById("notification").style.display = "flex";
+                                    setTimeout(() => {
+                                        document.getElementById("notification").style.display = "none";                                     
+                                    }, 3000);
+                                }
 
                             </script>
                         </body>
