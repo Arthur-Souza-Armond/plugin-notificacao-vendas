@@ -14,7 +14,7 @@
         $index = 0;
         foreach($result as $r){
             $products[$index]['nome_product'] = $r->post_title;
-            $products[$index]['imagem_produto'] = get_post_meta(get_post_meta($r->ID,'_thumbnail_id')[0],'_wc_attachment_source')[0];
+            $products[$index]['imagem_produto'] = wp_get_attachment_image_src( get_post_thumbnail_id( $r->ID ), 'single-post-thumbnail' );
             $index++;
         }
 

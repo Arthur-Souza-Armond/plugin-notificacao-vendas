@@ -40,6 +40,7 @@
                                     align-items:center;
                                     border-radius:12px;
                                     margin:0px;
+                                    z-index:100;
                                 }
                                 #img-product-not{
                                     width:100%;
@@ -69,7 +70,7 @@
                                 }
                                 .teste{
                                     opacity: 0;
-                                    animation: fade 3s linear;
+                                    animation: fade 4s linear;
                                 }
                                 @media only screen and (max-width: 768px) {
                                     .container-notificacao{
@@ -91,6 +92,7 @@
                                     <p id="text-sell-not"></p>
                                 </div>
                             </div>
+                            <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
                             <script>
                             
                             document.getElementById("notification").style.display = "none";
@@ -119,10 +121,10 @@
                                         
                                         title.innerHTML = data[index]['nome_product'];
                                         text.innerHTML =  "Um novo produto foi vendido para outro usuário!";
-                                        imgProduct.src = data[index]['imagem_produto'];
+                                        imgProduct.src = data[index]['imagem_produto'][0];
                                         document.getElementById("notification").classList.add("teste");
                                         display_notification();                                        
-                                    }, 5000);
+                                    }, 7000);
 
                                 }
 
@@ -164,9 +166,11 @@
                                     background-color:#fff;
                                     border-radius:10px;
                                     position:fixed;
-                                    bottom:0;
+                                    bottom:10px;
                                     left:15px;
                                     animation: fade-in 4s linear;
+                                    box-shadow:0 0 0.5em black;
+                                    z-index:100;
                                 }
                                 .text-title{
                                     font-weight:700;
@@ -174,11 +178,12 @@
                                     color:red;
                                 }
                                 .text-paragraph{
+                                    margin:0px;
                                     margin-top:8px;
                                     color:#252525;
                                     line-height:1.2em;
                                     font-size:18px;
-                                    font-weight:500;
+                                    font-weight:500;                                    
                                 }
                                 #timer{
                                     color:red;
@@ -202,9 +207,9 @@
                         </head>
                         <body>
                             <div class="container-cart-notification">
-                                <h3 class="text-title">
+                                <span class="text-title">
                                     Atenção!
-                                </h3>
+                                </span>
                                 <div class='divider'></div>
                                 <p class="text-paragraph">
                                     Você possui apenas <a id="timer"></a> minutos para finalizar sua compra. <br><a style='color:grey;font-size:13px;'>Após isso, seu carrinho será resetado.</a>
@@ -256,13 +261,15 @@
                                 }
                                 .container-product-notification{
                                     padding:10px;
-                                    bottom:0;
+                                    bottom:10px;
                                     left:15px;
                                     background-color:#fff;
                                     position:fixed;
                                     width:40%;
                                     border-radius:10px;
-                                    animation: fade-in 4s linear
+                                    animation: fade-in 4s linear;
+                                    z-index:100;
+                                    box-shadow:0 0 0.5em black
                                 }
                                 .title-notification-product{
                                     color:orange;
@@ -273,7 +280,8 @@
                                     color:orange;
                                 }
                                 .text-notification-product{
-                                    font-size:18px;
+                                    margin:0px;
+                                    font-size:16px;
                                     color:#252525;
                                     font-weight:500;
                                     margin-top:5px;
@@ -298,12 +306,12 @@
                         </head>
                         <body>
                             <div class="container-product-notification">
-                                <h3 class="title-notification-product">
+                                <span class="title-notification-product">
                                     Produto quente!
-                                </h3>
+                                </span>
                                 <div class="divider"></div>
                                 <p class="text-notification-product">
-                                    Outras <span id="people-count"></span> estão vendo este produto agora. <span style='color:orange;font-size:15px;'>Reserve já o seu!.</span>
+                                    Outras <span id="people-count"></span> estão vendo este produto agora. <span style='color:orange;font-size:16px;'>Reserve já o seu!.</span>
                                 </p>
                             </div>  
                             <script>
