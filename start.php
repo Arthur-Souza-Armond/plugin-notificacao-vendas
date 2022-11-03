@@ -28,6 +28,12 @@
                                     display:flex;
                                     align-items:center;
                                 }
+                                .div-1-not{
+                                    width:15%;
+                                }
+                                .div-2-not{
+                                    width:85%;padding-left:10px;
+                                }
                                 .container-notificacao{
                                     width:40%;
                                     background-color:#fff;
@@ -74,21 +80,31 @@
                                 }
                                 @media only screen and (max-width: 768px) {
                                     .container-notificacao{
-                                        width:100%;
+                                        width:90%;
                                     }
                                     #text-sell-not{
                                         font-size:13px;
+                                    }
+                                    #title-product-not{
+                                        font-size:18px;
+                                        font-weight:600;
+                                    }
+                                    .div-1-not{
+                                        width:25%;
+                                    }
+                                    .div-2-not{
+                                        width:75%;
                                     }
                                 }
                             </style>
                         </head>
                         <body>
                             <div class="container-notificacao col" id="notification">
-                                <div style="width:15%">
+                                <div class="div-1-not">
                                     <img alt="Imagem do produto" id="img-product-not">
                                 </div>
-                                <div style="width:60%;padding-left:10px;">
-                                    <span id="title-product-not"></span>
+                                <div class="div-2-not">
+                                    <span id="title-product-not" style='text-color:#000;'></span>
                                     <p id="text-sell-not"></p>
                                 </div>
                             </div>
@@ -124,7 +140,7 @@
                                         imgProduct.src = data[index]['imagem_produto'][0];
                                         document.getElementById("notification").classList.add("teste");
                                         display_notification();                                        
-                                    }, 7000);
+                                    }, 8000);
 
                                 }
 
@@ -196,10 +212,17 @@
                                 }
                                 @media only screen and (max-width: 768px){
                                     .container-cart-notification{
-                                        width:100vw;
+                                        width:90%;
+                                    }
+                                    .divider{
+                                        width:30%;
                                     }
                                     .text-paragraph{
                                         font-size:15px;
+                                    }
+                                    .text-title{
+                                        font-weight:600;
+                                        font-size:18px;
                                     }
                                 }
 
@@ -293,14 +316,18 @@
                                 }
                                 @media only screen and (max-width: 768px){
                                     .container-product-notification{
-                                        width:100%;
+                                        width:90%;
                                     }
                                     .divider{
                                         width:40%
                                     }
                                     .text-notification-product{
                                         font-size:15px;
-                                    }   
+                                    }
+                                    .title-notification-product{
+                                        font-size:18px;
+                                        font-weight:600;
+                                    }
                                 }
                             </style>
                         </head>
@@ -311,7 +338,7 @@
                                 </span>
                                 <div class="divider"></div>
                                 <p class="text-notification-product">
-                                    Outras <span id="people-count"></span> estão vendo este produto agora. <span style='color:orange;font-size:16px;'>Reserve já o seu!.</span>
+                                    Outras <span id="people-count"></span> estão vendo este produto agora. <span style='font-size:15px;'>Reserve já o seu!.</span>
                                 </p>
                             </div>  
                             <script>
